@@ -1,0 +1,92 @@
+<view class="container">
+  <view class="user-header">
+    <view class="user-info">
+      <image class="avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <view class="info">
+        <text class="name">{{userInfo.name || '未登录'}}</text>
+        <text class="role">{{userInfo.organizationName || ''}}</text>
+      </view>
+    </view>
+    <view class="user-actions">
+      <button class="action-btn" size="mini" bindtap="onSecurityCheck">安全检查</button>
+      <button class="action-btn logout" size="mini" bindtap="onLogout">退出</button>
+    </view>
+  </view>
+
+  <view class="statistics" wx:if="{{role === 'admin' || role === 'park_manager'}}">
+    <view class="stat-item">
+      <text class="stat-value">{{statistics.enterpriseCount}}</text>
+      <text class="stat-label">重点企业</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-value">{{statistics.organizationCount}}</text>
+      <text class="stat-label">党组织</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-value">{{statistics.memberCount}}</text>
+      <text class="stat-label">党员</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-value">{{statistics.gridCount}}</text>
+      <text class="stat-label">网格</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">快捷功能</text>
+    </view>
+    <view class="quick-actions">
+      <view 
+        class="action-item" 
+        wx:for="{{quickActions}}" 
+        wx:key="title"
+        data-url="{{item.url}}"
+        bindtap="onActionClick"
+      >
+        <text class="action-icon">{{item.icon}}</text>
+        <text class="action-title">{{item.title}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">党建资讯</text>
+      <navigator url="/pages/park/news/list" class="more">
+        <text>更多</text>
+        <text class="arrow">›</text>
+      </navigator>
+    </view>
+    <view class="news-list">
+      <view 
+        class="news-item" 
+        wx:for="{{newsList}}" 
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onNewsClick"
+      >
+        <view class="news-content">
+          <text class="news-title">{{item.title}}</text>
+          <text class="news-date">{{item.date}}</text>
+        </view>
+        <text class="badge" wx:if="{{item.isCarousel}}">轮播</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="security-footer">
+    <view class="security-badge">
+      <text class="badge-icon">🔒</text>
+      <text class="badge-text">数据加密传输</text>
+    </view>
+    <view class="security-badge">
+      <text class="badge-icon">✓</text>
+      <text class="badge-text">合规认证</text>
+    </view>
+    <view class="security-badge">
+      <text class="badge-icon">📋</text>
+      <text class="badge-text">审计记录</text>
+    </view>
+  </view>
+</view>
