@@ -29,12 +29,15 @@ public class AuthController {
   }
 
   @PostMapping("/login")
-  public LoginResponse login(@Valid @RequestBody LoginRequest request) {
+  public Map<String, Object> login(@Valid @RequestBody LoginRequest request) {
     LoginResponse response = authService.login(request.username(), request.password());
     if (response == null) {
       throw new UnauthorizedException("用户名或密码错误");
     }
-    return response;
+    return Map.of(
+      "success", true,
+      "data", response
+    );
   }
 
   @PostMapping("/logout")

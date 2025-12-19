@@ -15,7 +15,7 @@ public class User extends BaseEntity {
   @Column(nullable = false, length = 50)
   private String username;
 
-  @Column(nullable = false, length = 64)
+  @Column(name = "password_hash", nullable = false, length = 64)
   private String passwordHash;
 
   @Column(nullable = false, length = 50)
@@ -25,6 +25,7 @@ public class User extends BaseEntity {
   @Column(nullable = false, length = 30)
   private UserRole role;
 
+  @Column(name = "organization_id")
   private Long organizationId;
 
   public String getUsername() {
