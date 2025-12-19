@@ -1,0 +1,58 @@
+<view class="login-container">
+  <view class="login-header">
+    <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+    <text class="title">智慧党建平台</text>
+    <text class="subtitle">数据安全 · 合规管理</text>
+  </view>
+
+  <view class="login-form">
+    <view class="form-item">
+      <input
+        class="input"
+        type="text"
+        placeholder="请输入用户名"
+        value="{{username}}"
+        bindinput="onUsernameInput"
+      />
+    </view>
+
+    <view class="form-item">
+      <input
+        class="input"
+        type="password"
+        placeholder="请输入密码"
+        value="{{password}}"
+        bindinput="onPasswordInput"
+      />
+    </view>
+
+    <view class="privacy-agreement">
+      <checkbox-group bindchange="onAgreeChange">
+        <label class="privacy-label">
+          <checkbox value="agree" />
+          <text>我已阅读并同意</text>
+          <text class="link" bindtap="showPrivacyPolicy">《隐私政策》</text>
+        </label>
+      </checkbox-group>
+    </view>
+
+    <button class="login-btn" bindtap="onLogin">登录</button>
+    <button class="wx-login-btn" bindtap="onWxLogin">微信快捷登录</button>
+  </view>
+
+  <view class="security-notice">
+    <text class="notice-icon">🔒</text>
+    <text class="notice-text">本平台严格遵守《网络安全法》《数据安全法》《个人信息保护法》，确保您的数据安全</text>
+  </view>
+
+  <modal
+    title="隐私政策"
+    hidden="{{!showPrivacyModal}}"
+    bindconfirm="hidePrivacyModal"
+    bindcancel="hidePrivacyModal"
+  >
+    <view class="privacy-content">
+      <text>一、数据收集\n我们仅收集用于党建管理必需的数据，包括：\n1. 个人基本信息（姓名、性别、民族等）\n2. 党员信息（入党时间、党员类别等）\n3. 联系方式（手机号、邮箱等）\n\n二、数据使用\n收集的数据仅用于：\n1. 党建管理\n2. 党员教育\n3. 组织活动\n\n三、数据保护\n1. 采用加密技术保护数据传输\n2. 实施严格的访问控制\n3. 定期进行安全审计\n4. 建立完善的数据备份机制\n\n四、数据权利\n您有权：\n1. 查看您的个人数据\n2. 更正错误数据\n3. 请求删除数据\n4. 撤回数据使用同意\n\n五、法律合规\n本平台严格遵守：\n《中华人民共和国网络安全法》\n《中华人民共和国数据安全法》\n《中华人民共和国个人信息保护法》</text>
+    </view>
+  </modal>
+</view>

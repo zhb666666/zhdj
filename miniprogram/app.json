@@ -1,0 +1,62 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/enterprise/opinions/list",
+    "pages/enterprise/opinions/submit",
+    "pages/enterprise/announcements/list",
+    "pages/enterprise/announcements/detail",
+    "pages/park/home/home",
+    "pages/park/opinions/list",
+    "pages/park/news/list",
+    "pages/park/news/publish",
+    "pages/park/news/detail",
+    "pages/park/announcements/list",
+    "pages/park/organization/list",
+    "pages/park/personnel/list",
+    "pages/park/statistics/analysis",
+    "pages/park/members/list",
+    "pages/login/login"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#d43c33",
+    "navigationBarTitleText": "智慧党建",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#d43c33",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab-home.png",
+        "selectedIconPath": "images/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/park/news/list",
+        "text": "资讯",
+        "iconPath": "images/tab-news.png",
+        "selectedIconPath": "images/tab-news-active.png"
+      },
+      {
+        "pagePath": "pages/park/members/list",
+        "text": "党员",
+        "iconPath": "images/tab-member.png",
+        "selectedIconPath": "images/tab-member-active.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于显示园区地图位置"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
