@@ -1,0 +1,14 @@
+package com.smartpartybuilding.backend;
+
+import com.smartpartybuilding.backend.config.AppProperties;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+
+@SpringBootApplication
+@EnableConfigurationProperties(AppProperties.class)
+public class PartyPlatformBackendApplication {
+  public static void main(String[] args) {
+    SpringApplication.run(PartyPlatformBackendApplication.class, args);
+  }
+}
