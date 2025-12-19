@@ -29,13 +29,12 @@ class AuthService {
       // 密码加密
       const hashedPassword = DataEncryption.hash(password)
       
-      // 发起登录请求
-      const response = await request.post('/api/auth/login', {
+      // 发起登录请求（禁用加密传输）
+      const requestInstance = require('./request.js')
+      const response = await requestInstance.post('/auth/login', {
         username: username.trim(),
-        password: hashedPassword,
-        deviceInfo: this.getDeviceInfo(),
-        timestamp: Date.now()
-      })
+        password: hashedPassword
+      }, { enableEncryption: false })
 
       if (response.success) {
         const { token, refreshToken, userInfo, expiresIn } = response.data
@@ -77,11 +76,9 @@ class AuthService {
     try {
       if (!token) return false
 
-      const response = await request.get('/api/auth/validate', {
-        token
-      })
+      const response = await request.get('/auth/user-info', {}, { enableEncryption: false })
 
-      return response.success
+      return response.success || response.id != null
     } catch (error) {
       console.error('Token验证失败:', error)
       return false
@@ -93,30 +90,25 @@ class AuthService {
    */
   async refreshToken() {
     try {
-      const refreshToken = this.getRefreshToken()
-      if (!refreshToken) {
-        throw new Error('没有可用的刷新令牌')
+      const currentToken = this.getToken()
+      if (!currentToken) {
+        throw new Error('没有可用的令牌')
       }
 
-      const response = await request.post('/api/auth/refresh', {
-        refreshToken
-      })
+      const response = await request.post('/auth/refresh-token', {}, { enableEncryption: false })
 
-      if (response.success) {
-        const { token, refreshToken: newRefreshToken, expiresIn } = response.data
+      if (response.token) {
+        const expiresIn = this.appProperties?.auth?.tokenTtlSeconds || 7200
         
-        this.setToken(token, expiresIn)
-        if (newRefreshToken) {
-          this.setRefreshToken(newRefreshToken)
-        }
+        this.setToken(response.token, expiresIn)
         
         return {
           success: true,
-          token,
+          token: response.token,
           expiresIn
         }
       } else {
-        throw new Error(response.message || 'Token刷新失败')
+        throw new Error('Token刷新失败')
       }
       
     } catch (error) {
@@ -140,9 +132,7 @@ class AuthService {
       const token = this.getToken()
       if (token) {
         // 通知服务器退出登录
-        await request.post('/api/auth/logout', {
-          token
-        }).catch(error => {
+        await request.post('/auth/logout', {}, { enableEncryption: false }).catch(error => {
           console.warn('服务器退出登录失败:', error)
         })
       }
@@ -193,10 +183,10 @@ class AuthService {
       const hashedOldPassword = DataEncryption.hash(oldPassword)
       const hashedNewPassword = DataEncryption.hash(newPassword)
 
-      const response = await request.post('/api/auth/change-password', {
+      const response = await request.post('/auth/change-password', {
         oldPassword: hashedOldPassword,
         newPassword: hashedNewPassword
-      })
+      }, { enableEncryption: false })
 
       return response
       

@@ -34,13 +34,16 @@ public class AuthService {
     userTokenRepository.deleteByExpiresAtBefore(LocalDateTime.now());
 
     String token = UUID.randomUUID().toString().replace("-", "");
+    String refreshToken = UUID.randomUUID().toString().replace("-", "");
+    Long expiresIn = appProperties.auth().tokenTtlSeconds();
+    
     UserToken userToken = new UserToken();
     userToken.setToken(token);
     userToken.setUserId(user.getId());
-    userToken.setExpiresAt(LocalDateTime.now().plusSeconds(appProperties.auth().tokenTtlSeconds()));
+    userToken.setExpiresAt(LocalDateTime.now().plusSeconds(expiresIn));
     userTokenRepository.save(userToken);
 
-    return new LoginResponse(token, new UserInfoDto(user.getId(), user.getName(), user.getRole(), user.getOrganizationId()));
+    return new LoginResponse(token, refreshToken, new UserInfoDto(user.getId(), user.getName(), user.getRole(), user.getOrganizationId()), expiresIn);
   }
 
   @Transactional(readOnly = true)

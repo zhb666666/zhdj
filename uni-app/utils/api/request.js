@@ -5,7 +5,7 @@
 
 class Request {
   constructor(config = {}) {
-    this.baseURL = config.baseURL || 'https://your-api-domain.com'
+    this.baseURL = config.baseURL || 'http://localhost:8080'
     this.timeout = config.timeout || 10000
     this.enableEncryption = config.enableEncryption !== false
     this.enableAuth = config.enableAuth !== false
@@ -45,8 +45,9 @@ class Request {
     // 添加请求时间戳（防重放攻击）
     config.timestamp = Date.now()
     
-    // 数据加密
-    if (this.enableEncryption && config.data) {
+    // 数据加密（可在请求级别禁用）
+    const shouldEncrypt = config.enableEncryption !== false && this.enableEncryption
+    if (shouldEncrypt && config.data) {
       const DataEncryption = require('../security/data-encryption.js')
       config.data = DataEncryption.encrypt(JSON.stringify(config.data))
     }

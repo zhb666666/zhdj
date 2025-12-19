@@ -9,16 +9,16 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "user_tokens", indexes = {
     @Index(name = "idx_user_tokens_token", columnList = "token", unique = true),
-    @Index(name = "idx_user_tokens_user", columnList = "userId")
+    @Index(name = "idx_user_tokens_user", columnList = "user_id")
 })
 public class UserToken extends BaseEntity {
-  @Column(nullable = false, length = 64)
+  @Column(nullable = false, length = 255)
   private String token;
 
-  @Column(nullable = false)
+  @Column(name = "user_id", nullable = false)
   private Long userId;
 
-  @Column(nullable = false)
+  @Column(name = "expire_time", nullable = false)
   private LocalDateTime expiresAt;
 
   public String getToken() {
