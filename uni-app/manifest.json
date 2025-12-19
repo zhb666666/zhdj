@@ -1,0 +1,67 @@
+{
+  "name": "smart-party-building",
+  "appid": "__UNI__smartpartybuilding",
+  "description": "智慧党建管理系统uni-app前端",
+  "versionName": "1.0.0",
+  "versionCode": 100,
+  "transformPx": false,
+  "appname": "智慧党建",
+  "condition": {
+    "miniprogram": {
+      "current": -1,
+      "list": []
+    }
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.19.0",
+  "uniStatistics": {
+    "enable": false
+  },
+  "cdnUrl": "https://cdn.dcloud.net.cn/unidoc-ci",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "autoAudits": false,
+    "newFeature": false,
+    "coverView": true,
+    "nodeModules": false,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "packNpmManually": false,
+    "enableEngineNative": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "showShadowRootInWxmlPanel": true,
+    "minifyWXML": true
+  },
+  "mp-weixin": {
+    "appid": "",
+    "setting": {
+      "urlCheck": false
+    },
+    "usingComponents": true
+  },
+  "uniCloud": {
+    "cloudPath": "smart-party-building",
+    "cloudFunctionRoot": "cloudfunctions/",
+    "databaseName": "smart-party-building",
+    "provider": "tencent",
+    "clientVersion": "2.19.0"
+  }
+}

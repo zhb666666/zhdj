@@ -1,0 +1,108 @@
+{
+  "pages": [
+    {
+      "path": "pages/login/login",
+      "style": {
+        "navigationBarTitleText": "登录",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "智慧党建",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/profile/profile",
+      "style": {
+        "navigationBarTitleText": "个人中心",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/members/members",
+      "style": {
+        "navigationBarTitleText": "党员管理",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/opinions/opinions",
+      "style": {
+        "navigationBarTitleText": "意见稿",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/news/news",
+      "style": {
+        "navigationBarTitleText": "党建资讯",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/notices/notices",
+      "style": {
+        "navigationBarTitleText": "通知公告",
+        "navigationStyle": "custom"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "智慧党建",
+    "navigationBarBackgroundColor": "#C62E2E",
+    "backgroundColor": "#F8F8F8",
+    "backgroundColorBottom": "#F8F8F8",
+    "backgroundColorTop": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#C62E2E",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/images/home.png",
+        "selectedIconPath": "static/images/home-active.png"
+      },
+      {
+        "pagePath": "pages/members/members",
+        "text": "党员",
+        "iconPath": "static/images/member.png",
+        "selectedIconPath": "static/images/member-active.png"
+      },
+      {
+        "pagePath": "pages/opinions/opinions",
+        "text": "意见稿",
+        "iconPath": "static/images/opinion.png",
+        "selectedIconPath": "static/images/opinion-active.png"
+      },
+      {
+        "pagePath": "pages/news/news",
+        "text": "资讯",
+        "iconPath": "static/images/news.png",
+        "selectedIconPath": "static/images/news-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "static/images/profile.png",
+        "selectedIconPath": "static/images/profile-active.png"
+      }
+    ]
+  },
+  "condition": {
+    "current": 0,
+    "list": [
+      {
+        "name": "登录",
+        "path": "pages/login/login"
+      }
+    ]
+  }
+}
